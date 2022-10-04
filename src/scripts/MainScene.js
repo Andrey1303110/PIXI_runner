@@ -3,6 +3,7 @@ import TWEEN from "@tweenjs/tween.js";
 import { Globals } from "./Globals";
 import {Howl, Howler} from 'howler';
 import { Background } from "./Background";
+import { Platforms } from "./Platforms";
 
 export class MainScene {
     constructor() {
@@ -14,6 +15,7 @@ export class MainScene {
     init() {
         this.addSounds();
         this.createBackground();
+        this.cretePlatforms();
     }
 
     update(dt) {
@@ -39,6 +41,11 @@ export class MainScene {
         this.bg.anchor.set(0.5);
         */
         this.container.addChild(this.bg.container);
+    }
+
+    cretePlatforms() {
+        this.platforms = new Platforms();
+        this.container.addChild(this.platforms.container);
     }
 
     addSounds() {
