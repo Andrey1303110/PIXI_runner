@@ -28,18 +28,6 @@ export class MainScene {
         }
 
         this.bg = new Background();
-
-        /*
-        this.bg = new PIXI.Sprite(Globals.resources["bg"].texture);
-
-        this.bg.width = Math.max(window.innerWidth, window.innerHeight);
-        this.bg.height = Math.max(window.innerWidth, window.innerHeight);
-
-        this.bg.x = document.body.clientWidth / 2;
-        this.bg.y = document.body.clientHeight / 2;
-
-        this.bg.anchor.set(0.5);
-        */
         this.container.addChild(this.bg.container);
     }
 
