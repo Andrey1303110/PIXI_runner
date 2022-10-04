@@ -8,8 +8,6 @@ export class Platform {
 
         this.createContainer(x);
         this.createTiles();
-
-        console.log(Globals.resources['tile'].texture.height);
     }
 
     createContainer(x) {
