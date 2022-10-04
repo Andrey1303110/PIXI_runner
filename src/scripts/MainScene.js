@@ -16,6 +16,10 @@ export class MainScene {
         this.createBackground();
     }
 
+    update(dt) {
+        this.bg.update(dt);
+    }
+
     createBackground() {
         if (this.bg) {
             return;

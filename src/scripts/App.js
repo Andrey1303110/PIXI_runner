@@ -19,12 +19,13 @@ export class App {
     start() {
         document.querySelector(".loader").style.display = "none";
 
-        this.app.ticker.add(() => {
-            TWEEN.update();
-        })
-
         this.scene = new MainScene();
         this.app.stage.addChild(this.scene.container);
+
+        this.app.ticker.add(dt => {
+            //TWEEN.update();
+            this.scene.update(dt);
+        })
 
         Globals.scenes = {
             main: this.scene,
