@@ -35,7 +35,7 @@ export class Hero {
     }
 
     get nextbottom() {
-        return this.bottom + this.dy;
+        return this.bottom + this.dy * 1.3;
     }
 
     getSprites(name, action) {
