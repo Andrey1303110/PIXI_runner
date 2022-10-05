@@ -4,6 +4,7 @@ import { Globals } from "./Globals";
 import {Howl, Howler} from 'howler';
 import { Background } from "./Background";
 import { Platforms } from "./Platforms";
+import { Hero } from "./Hero";
 
 export class MainScene {
     constructor() {
@@ -16,6 +17,7 @@ export class MainScene {
         this.addSounds();
         this.createBackground();
         this.cretePlatforms();
+        this.createHero();
     }
 
     update(dt) {
@@ -35,6 +37,11 @@ export class MainScene {
     cretePlatforms() {
         this.platforms = new Platforms();
         this.container.addChild(this.platforms.container);
+    }
+
+    createHero() {
+        this.hero = new Hero('soldier');
+        this.container.addChild(this.hero.sprite);
     }
 
     addSounds() {

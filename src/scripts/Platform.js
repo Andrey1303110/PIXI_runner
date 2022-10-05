@@ -54,7 +54,7 @@ export class Platform {
     }
 
     move() {
-        this.container.x += -Globals.configs.speed * 5;
+        this.container.x += -Globals.configs.speed * 6;
 
         if (this.right < 0) {
             this.container.emit('hidden');
