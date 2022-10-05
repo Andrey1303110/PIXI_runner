@@ -52,7 +52,7 @@ export class MainScene {
             this.hero.startJump();
         });
         this.hero.sprite.once('die', () => {
-            Globals.scene.start(new FinalScene());
+            Globals.scene.start(new FinalScene(this.hero.score));
         })
     }
 

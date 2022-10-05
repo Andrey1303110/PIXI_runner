@@ -1,10 +1,11 @@
 import * as PIXI from "pixi.js";
 
 export class LabelScore extends PIXI.Text {
-    constructor() {
+    constructor(x = document.body.clientWidth * .015, y = document.body.clientWidth * .015, anchor = 0) {
         super();
-        this.x = document.body.clientWidth * .015;
-        this.y = document.body.clientWidth * .015;
+        this.x = x;
+        this.y = y;
+        this.anchor.set(anchor);
         this.style = {
             fontFamily: "Verdana",
             fontWeight: "bold",
