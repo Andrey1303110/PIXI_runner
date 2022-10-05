@@ -11,8 +11,8 @@ export const Globals = {
     },
     diamondsConfigs: {
         offset: {
-            min: 100,
-            max: 200,
+            min: 125,
+            max: 275,
         }
     }
 };
