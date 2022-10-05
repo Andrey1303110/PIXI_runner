@@ -3,14 +3,15 @@ import { Globals } from "./Globals";
 
 export class Hero {
     constructor(name) {
-        this.createSpriteArr(name, 'run');
+        this.name = name;
 
         this.dy = 0;
+        this.jumpIndex = 0;
         this.platform = null;
 
-        this.sprite = new PIXI.AnimatedSprite(this.spriteArr);
+        this.sprite = new PIXI.AnimatedSprite(this.getSprites(this.name, 'run'));
         this.sprite.x = document.body.clientWidth * .1;
-        this.sprite.y = document.body.clientHeight * .1;
+        this.sprite.y = 0;
 
         this.sprite.loop = true;
         this.sprite.animationSpeed = 1 / 7.5;
@@ -37,11 +38,12 @@ export class Hero {
         return this.bottom + this.dy;
     }
 
-    createSpriteArr(name, action) {
-        this.spriteArr = [];
+    getSprites(name, action) {
+        let spritesArr = [];
         for (let i = 1; i <= Globals.spritesConfigs[name][action]; i++) {
-            this.spriteArr.push(Globals.resources[`${name}_${action}_${i}`].texture);
+            spritesArr.push(Globals.resources[`${name}_${action}_${i}`].texture);
         }
+        return spritesArr;
     }
 
     update() {
@@ -54,10 +56,19 @@ export class Hero {
     stayOnPlatform(platform) {
         this.platform = platform;
         this.dy = 0;
+        this.jumpIndex = 0;
         this.sprite.y = platform.top - this.sprite.height;
     }
 
     moveByPlatform(platform) {
         this.sprite.x = platform.nextleft - this.sprite.width;
+    }
+
+    startJump() {
+        if (this.platform || this.jumpIndex === 1) {
+            ++this.jumpIndex;
+            this.platform = null;
+            this.dy = -this.sprite.height/10;
+        }
     }
 }

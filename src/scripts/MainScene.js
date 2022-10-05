@@ -44,6 +44,10 @@ export class MainScene {
     createHero() {
         this.hero = new Hero('soldier');
         this.container.addChild(this.hero.sprite);
+        this.container.interactive = true;
+        this.container.on('pointerdown', () => {
+            this.hero.startJump();
+        });
     }
 
     addSounds() {

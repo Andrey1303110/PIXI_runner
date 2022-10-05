@@ -16,7 +16,7 @@ export class Platforms {
                 max: 15,
             },
             offset: {
-                min: 250,
+                min: 150,
                 max: 350,
             }
         };
@@ -26,8 +26,8 @@ export class Platforms {
     get initRandomData() {
         return {
             rows: this.ranges.rows.min + Math.round(Math.random() * (this.ranges.rows.max - this.ranges.rows.min)),
-            cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max - this.ranges.cols.min)),
-            x:    Math.round(Math.random() * this.ranges.offset.max),
+            cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max * 2 - this.ranges.cols.min)),
+            x:    100,
         }
     }
 
