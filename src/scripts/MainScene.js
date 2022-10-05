@@ -6,6 +6,7 @@ import { Background } from "./Background";
 import { Platforms } from "./Platforms";
 import { Hero } from "./Hero";
 import { LabelScore } from "./LabelScore";
+import { FinalScene } from "./FinalScene";
 
 export class MainScene {
     constructor() {
@@ -50,6 +51,9 @@ export class MainScene {
         this.container.on('pointerdown', () => {
             this.hero.startJump();
         });
+        this.hero.sprite.once('die', () => {
+            Globals.scene.start(new FinalScene());
+        })
     }
 
     createUI() {
@@ -79,7 +83,7 @@ export class MainScene {
 
         /*
         Globals.resources.sounds.music.on('load', function(){
-            Globals.resources.sounds.theme.play();
+            Globals.resources.sounds.music.play();
         });
         */
     }

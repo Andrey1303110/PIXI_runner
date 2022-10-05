@@ -52,6 +52,10 @@ export class Hero {
             ++this.dy;
             this.sprite.y += this.dy;
         }
+
+        if (this.sprite.y > document.body.clientHeight) {
+            this.sprite.emit('die');
+        }
     }
 
     stayOnPlatform(platform) {
