@@ -9,14 +9,13 @@ export class Hero {
         this.jumpIndex = 0;
         this.platform = null;
         this.score = 0;
+        this.isRunning = false;
 
         this.sprite = new PIXI.AnimatedSprite(this.getSprites(this.name, 'run'));
         this.sprite.x = document.body.clientWidth * .1;
         this.sprite.y = 0;
 
-        this.sprite.loop = true;
-        this.sprite.animationSpeed = 1 / 7.5;
-        this.sprite.play();
+        this.startRun();
     }
 
     get left() {
@@ -63,6 +62,8 @@ export class Hero {
         this.dy = 0;
         this.jumpIndex = 0;
         this.sprite.y = platform.top - this.sprite.height;
+
+        this.startRun();
     }
 
     moveByPlatform(platform) {
@@ -71,9 +72,27 @@ export class Hero {
 
     startJump() {
         if (this.platform || this.jumpIndex === 1) {
+
+            this.isRunning = false;
+            this.sprite.textures = this.getSprites(this.name, 'jump');
+            this.sprite.animationSpeed = 1/11;
+            this.sprite.loop = false;
+            this.sprite.play();
+
+
             ++this.jumpIndex;
             this.platform = null;
             this.dy = -this.sprite.height/10;
+        }
+    }
+
+    startRun() {
+        if (!this.isRunning) {
+            this.sprite.textures = this.getSprites(this.name, 'run');
+            this.sprite.animationSpeed = 1/6;
+            this.sprite.loop = true;
+            this.sprite.play();
+            this.isRunning = true;
         }
     }
 
