@@ -9,12 +9,18 @@ export class Platform {
         this.width = cols * Globals.resources['tile'].texture.width;
         this.height = rows * Globals.resources['tile'].texture.height;
 
+        this.dx = -7;
+
         this.createContainer(x);
         this.createTiles();
     }
 
     get left() {
         return this.container.x;
+    }
+
+    get nextleft() {
+        return this.left + this.dx;
     }
 
     get right() {
@@ -46,7 +52,7 @@ export class Platform {
     createTile(row, col) {
         const texture = row === 0 ? 'platform' : 'tile';
         const tile = new PIXI.Sprite(Globals.resources[texture].texture);
-        
+
         tile.x = col * tile.width;
         tile.y = row * tile.height;
 
@@ -54,7 +60,7 @@ export class Platform {
     }
 
     move() {
-        this.container.x += -Globals.configs.speed * 6;
+        this.container.x += Globals.configs.speed * this.dx;
 
         if (this.right < 0) {
             this.container.emit('hidden');
@@ -68,13 +74,24 @@ export class Platform {
             if (object.platform === this) {
                 object.platform = null;
             }
+
+            if (this.isCollideLeft(object)) {
+                object.moveByPlatform(this);
+            }
         }
     }
 
     isCollideTop(object) {
         return (object.right >= this.left &&
-                object.left <= this.right &&
-                object.bottom <= this.top &&
-                object.nextBottom >= this.top);
+            object.left <= this.right &&
+            object.bottom <= this.top &&
+            object.nextbottom >= this.top);
+    }
+
+    isCollideLeft(object) {
+        return (object.bottom >= this.top &&
+            object.top <= this.bottom &&
+            object.right <= this.left &&
+            object.right >= this.nextleft);
     }
 }

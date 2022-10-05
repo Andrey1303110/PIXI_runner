@@ -8,16 +8,16 @@ export class Platforms {
 
         this.ranges = {
             rows: {
-                min: 2,
-                max: 6,
+                min: 3,
+                max: 9,
             },
             cols: {
                 min: 5,
                 max: 15,
             },
             offset: {
-                min: 200,
-                max: 400,
+                min: 250,
+                max: 350,
             }
         };
         this.createPlatform(this.initRandomData);

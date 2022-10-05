@@ -9,12 +9,11 @@ export class Hero {
         this.platform = null;
 
         this.sprite = new PIXI.AnimatedSprite(this.spriteArr);
-        //this.sprite.anchor.set(0.5);
-        this.sprite.x = document.body.clientWidth/2;
-        this.sprite.y = document.body.clientHeight/2;
+        this.sprite.x = document.body.clientWidth * .1;
+        this.sprite.y = document.body.clientHeight * .1;
 
         this.sprite.loop = true;
-        this.sprite.animationSpeed = 1/7.5;
+        this.sprite.animationSpeed = 1 / 7.5;
         this.sprite.play();
     }
 
@@ -31,10 +30,10 @@ export class Hero {
     }
 
     get bottom() {
-        return this.sprite.y + this.sprite.height;
+        return this.top + this.sprite.height;
     }
 
-    get nextBottom() {
+    get nextbottom() {
         return this.bottom + this.dy;
     }
 
@@ -54,8 +53,11 @@ export class Hero {
 
     stayOnPlatform(platform) {
         this.platform = platform;
-
         this.dy = 0;
         this.sprite.y = platform.top - this.sprite.height;
+    }
+
+    moveByPlatform(platform) {
+        this.sprite.x = platform.nextleft - this.sprite.width;
     }
 }
