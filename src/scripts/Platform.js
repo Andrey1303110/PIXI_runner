@@ -67,7 +67,7 @@ export class Platform {
         const y = Globals.diamondsConfigs.offset.min + Math.random() * (Globals.diamondsConfigs.offset.max - Globals.diamondsConfigs.offset.min);
 
         for (let i = 0; i < this.cols; i++) {
-            if (Math.random() <= .5) {
+            if (Math.random() <= .75) {
                 const diamond = new Diamond(Globals.resources['tile'].texture.height * i, -y);
                 this.container.addChild(diamond.sprite);
                 this.diamonds.push(diamond);

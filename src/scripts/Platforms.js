@@ -17,7 +17,7 @@ export class Platforms {
             },
             offset: {
                 min: 200,
-                max: 400,
+                max: 425,
             }
         };
         this.createPlatform(this.initRandomData);
