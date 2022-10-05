@@ -12,12 +12,12 @@ export class Platforms {
                 max: 6,
             },
             cols: {
-                min: 3,
-                max: 9,
+                min: 5,
+                max: 15,
             },
             offset: {
-                min: 60,
-                max: 200,
+                min: 200,
+                max: 400,
             }
         };
         this.createPlatform(this.initRandomData);
@@ -59,5 +59,11 @@ export class Platforms {
         this.platforms.forEach(platform => {
             platform.move();
         })
+    }
+
+    checkCollision(object) {
+        this.platforms.forEach(platform => {
+            platform.checkCollision(object);
+        });
     }
 }

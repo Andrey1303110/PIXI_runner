@@ -26,7 +26,7 @@ export class Platform {
     }
 
     get bottom() {
-        return this.container.y + this.height;
+        return this.top + this.height;
     }
 
     createContainer(x) {
@@ -59,5 +59,22 @@ export class Platform {
         if (this.right < 0) {
             this.container.emit('hidden');
         }
+    }
+
+    checkCollision(object) {
+        if (this.isCollideTop(object)) {
+            object.stayOnPlatform(this);
+        } else {
+            if (object.platform === this) {
+                object.platform = null;
+            }
+        }
+    }
+
+    isCollideTop(object) {
+        return (object.right >= this.left &&
+                object.left <= this.right &&
+                object.bottom <= this.top &&
+                object.nextBottom >= this.top);
     }
 }
