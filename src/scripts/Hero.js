@@ -8,6 +8,7 @@ export class Hero {
         this.dy = 0;
         this.jumpIndex = 0;
         this.platform = null;
+        this.score = 0;
 
         this.sprite = new PIXI.AnimatedSprite(this.getSprites(this.name, 'run'));
         this.sprite.x = document.body.clientWidth * .1;
@@ -70,5 +71,10 @@ export class Hero {
             this.platform = null;
             this.dy = -this.sprite.height/10;
         }
+    }
+
+    collectDiamond() {
+        ++this.score;
+        this.sprite.emit('score');
     }
 }

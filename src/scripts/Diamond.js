@@ -15,6 +15,7 @@ export class Diamond {
         }
 
         if (this.isOverlap(hero)) {
+            hero.collectDiamond();
             this.sprite.destroy();
             this.sprite = null;
         }

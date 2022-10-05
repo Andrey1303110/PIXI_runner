@@ -5,6 +5,7 @@ import {Howl, Howler} from 'howler';
 import { Background } from "./Background";
 import { Platforms } from "./Platforms";
 import { Hero } from "./Hero";
+import { LabelScore } from "./LabelScore";
 
 export class MainScene {
     constructor() {
@@ -18,6 +19,7 @@ export class MainScene {
         this.createBackground();
         this.cretePlatforms();
         this.createHero();
+        this.createUI();
     }
 
     update(dt) {
@@ -47,6 +49,14 @@ export class MainScene {
         this.container.interactive = true;
         this.container.on('pointerdown', () => {
             this.hero.startJump();
+        });
+    }
+
+    createUI() {
+        this.labelScore = new LabelScore();
+        this.container.addChild(this.labelScore);
+        this.hero.sprite.on('score', () => {
+            this.labelScore.renderScore(this.hero.score);
         });
     }
 
