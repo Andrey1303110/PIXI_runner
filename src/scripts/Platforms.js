@@ -27,7 +27,7 @@ export class Platforms {
         return {
             rows: this.ranges.rows.min + Math.round(Math.random() * (this.ranges.rows.max - this.ranges.rows.min)),
             cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max - this.ranges.cols.min)),
-            x:    this.ranges.offset.min + Math.round(Math.random() * (this.ranges.offset.max - this.ranges.offset.min)),
+            x:    Math.round(Math.random() * this.ranges.offset.max),
         }
     }
 
