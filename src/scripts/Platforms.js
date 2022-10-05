@@ -9,15 +9,15 @@ export class Platforms {
         this.ranges = {
             rows: {
                 min: 3,
-                max: 9,
+                max: 8,
             },
             cols: {
-                min: 5,
-                max: 15,
+                min: 4,
+                max: 12,
             },
             offset: {
-                min: 150,
-                max: 350,
+                min: 200,
+                max: 400,
             }
         };
         this.createPlatform(this.initRandomData);
