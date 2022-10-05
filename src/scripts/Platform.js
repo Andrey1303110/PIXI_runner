@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { Globals } from "./Globals";
+import { Diamond } from "./Diamond";
 
 export class Platform {
     constructor(rows, cols, x) {
@@ -11,8 +12,11 @@ export class Platform {
 
         this.dx = -7;
 
+        this.diamonds = [];
+
         this.createContainer(x);
         this.createTiles();
+        this.createDiamonds();
     }
 
     get left() {
@@ -57,6 +61,18 @@ export class Platform {
         tile.y = row * tile.height;
 
         this.container.addChild(tile);
+    }
+
+    createDiamonds() {
+        const y = Globals.diamondsConfigs.offset.min + Math.random() * (Globals.diamondsConfigs.offset.max - Globals.diamondsConfigs.offset.min);
+
+        for (let i = 0; i < this.cols; i++) {
+            if (Math.random() <= .5) {
+                const diamond = new Diamond(Globals.resources['tile'].texture.height * i, -y);
+                this.container.addChild(diamond.sprite);
+                this.diamonds.push(diamond);
+            }
+        }
     }
 
     move() {

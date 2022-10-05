@@ -8,5 +8,11 @@ export const Globals = {
             run: 6,
             jump: 5
         }
+    },
+    diamondsConfigs: {
+        offset: {
+            min: 100,
+            max: 200,
+        }
     }
 };
