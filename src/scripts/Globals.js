@@ -1,3 +1,6 @@
 export const Globals = {
-    resources: {}
+    resources: {},
+    configs: {
+        speed: 1,
+    }
 };

@@ -1,8 +1,6 @@
 import * as PIXI from "pixi.js";
 import { Globals } from "./Globals";
 
-
-
 export class Platform {
     constructor(rows, cols, x) {
         this.rows = rows;
@@ -53,5 +51,13 @@ export class Platform {
         tile.y = row * tile.height;
 
         this.container.addChild(tile);
+    }
+
+    move() {
+        this.container.x += -Globals.configs.speed * 5;
+
+        if (this.right < 0) {
+            this.container.emit('hidden');
+        }
     }
 }

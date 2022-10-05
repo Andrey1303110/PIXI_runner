@@ -40,16 +40,24 @@ export class Platforms {
     }
 
     createPlatform(data) {
-        console.log(data);
         const platform = new Platform(data.rows, data.cols, data.x);
         this.container.addChild(platform.container);
         this.platforms.push(platform);
         this.current = platform;
+
+        platform.container.once('hidden', () => {
+            this.platforms = this.platforms.filter(item => item !== platform);
+            platform.container.destroy();
+        });
     }
 
     update(dt) {
         if (this.current.right < document.body.clientWidth) {
             this.createPlatform(this.randomData);
         }
+
+        this.platforms.forEach(platform => {
+            platform.move();
+        })
     }
 }
