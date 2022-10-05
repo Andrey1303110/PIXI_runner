@@ -6,16 +6,50 @@ export class Platforms {
         this.platforms = [];
         this.container = new PIXI.Container();
 
-        this.createPlatform({
-            rows: 4,
-            cols: 6,
-            x: 200
-        })
+        this.ranges = {
+            rows: {
+                min: 2,
+                max: 6,
+            },
+            cols: {
+                min: 3,
+                max: 9,
+            },
+            offset: {
+                min: 60,
+                max: 200,
+            }
+        };
+        this.createPlatform(this.initRandomData);
+    }
+
+    get initRandomData() {
+        return {
+            rows: this.ranges.rows.min + Math.round(Math.random() * (this.ranges.rows.max - this.ranges.rows.min)),
+            cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max - this.ranges.cols.min)),
+            x:    this.ranges.offset.min + Math.round(Math.random() * (this.ranges.offset.max - this.ranges.offset.min)),
+        }
+    }
+
+    get randomData() {
+        return {
+            rows: this.ranges.rows.min + Math.round(Math.random() * (this.ranges.rows.max - this.ranges.rows.min)),
+            cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max - this.ranges.cols.min)),
+            x:    this.current.right + this.ranges.offset.min + Math.round(Math.random() * (this.ranges.offset.max - this.ranges.offset.min)),
+        }
     }
 
     createPlatform(data) {
+        console.log(data);
         const platform = new Platform(data.rows, data.cols, data.x);
         this.container.addChild(platform.container);
         this.platforms.push(platform);
+        this.current = platform;
+    }
+
+    update(dt) {
+        if (this.current.right < document.body.clientWidth) {
+            this.createPlatform(this.randomData);
+        }
     }
 }
