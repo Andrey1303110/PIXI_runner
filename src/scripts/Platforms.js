@@ -26,7 +26,7 @@ export class Platforms {
     get initRandomData() {
         return {
             rows: this.ranges.rows.min + Math.round(Math.random() * (this.ranges.rows.max - this.ranges.rows.min)),
-            cols: this.ranges.cols.min + Math.round(Math.random() * (this.ranges.cols.max * 2 - this.ranges.cols.min)),
+            cols: this.ranges.cols.max,
             x:    100,
         }
     }
